@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateNewAccountPage extends BasePage{
+public class CreateNewAccountPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'witsSuggestedNameField')]//input")
     private WebElement accountInput;
@@ -12,15 +12,15 @@ public class CreateNewAccountPage extends BasePage{
     @FindBy(xpath = "//div[contains(@class,'actionsContainer')]//span[text()='Save']/..")
     private WebElement saveButton;
 
-    public void fillInAccountName(String accountName){
+    public void fillInAccountName(String accountName) {
         accountInput.sendKeys(accountName);
     }
 
-    public void fillInPhone(String phone){
+    public void fillInPhone(String phone) {
         phoneInput.sendKeys(phone);
     }
 
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         saveButton.click();
     }
 }

@@ -1,10 +1,12 @@
 package business_objects;
 
-public class Account{
-    public Account(String accountName, String phone){
+public class Account {
+
+    public Account(String accountName, String phone) {
         this.accountName = accountName;
         this.phone = phone;
     }
+
     private String accountName;
     private String phone;
 

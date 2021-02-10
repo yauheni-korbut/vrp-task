@@ -47,11 +47,6 @@
             <version>4.12</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
             <version>1.2.5</version>
@@ -73,7 +68,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -103,10 +97,7 @@
                             <jsonFiles>
                                 <param>*.json</param>
                             </jsonFiles>
-                            <skippedFails>true</skippedFails>
-                            <enableFlashCharts>false</enableFlashCharts>
                             <buildNumber>42</buildNumber>
-                            <buildSuccessOnTestFailure>true</buildSuccessOnTestFailure>
                             <checkBuildResult>false</checkBuildResult>
                         </configuration>
                     </execution>
@@ -114,7 +105,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>

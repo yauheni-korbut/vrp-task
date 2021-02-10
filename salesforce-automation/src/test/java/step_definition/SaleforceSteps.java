@@ -1,14 +1,8 @@
 package step_definition;
 
-import business_objects.Account;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import pages.*;
 import scenario_context.ScenarioContext;
 import utils.AccountHelper;
@@ -16,9 +10,9 @@ import webdriver.WebDriverManager;
 
 import static utils.ICommonConstants.*;
 
-public class SaleforceSteps extends BaseSteps{
+public class SaleforceSteps extends BaseSteps {
 
-    public SaleforceSteps(ScenarioContext scenarioContext){
+    public SaleforceSteps(ScenarioContext scenarioContext) {
         this.scenarioContext = scenarioContext;
     }
 
@@ -38,21 +32,21 @@ public class SaleforceSteps extends BaseSteps{
     }
 
     @Given("^Go to accounts")
-    public void go_to_Accounts(){
+    public void go_to_Accounts() {
         homePage.clickAccountTab();
         accountTab = new AccountTabPage();
     }
 
 
     @When("^Cick 'New' button$")
-    public void cickNewButton(){
+    public void cickNewButton() {
         accountTab.clickNewButton();
         createNewAccountPage = new CreateNewAccountPage();
     }
 
 
     @When("^Fill in account name$")
-    public void fillInAccountName(){
+    public void fillInAccountName() {
         scenarioContext.setAccount(AccountHelper.generateAccount());
         createNewAccountPage.fillInAccountName(scenarioContext.getAccount().getAccountName());
     }
@@ -63,7 +57,7 @@ public class SaleforceSteps extends BaseSteps{
     }
 
     @When("^Click Save button to create a new account$")
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         createNewAccountPage.clickSaveButton();
         detailAccountPage = new DetailAccountPage();
     }
@@ -72,7 +66,7 @@ public class SaleforceSteps extends BaseSteps{
     @Then("^Verify notification that user was created is displayed$")
     public void verifyNotificationThatUserWasCreatedIsDisplayed() {
         scenarioContext.getSoftAssertions().assertThat(accountTab.getNotificationText())
-                .isEqualTo(String.format("aAccount \"%s\" was created.",scenarioContext.getAccount().getAccountName()));
+                .isEqualTo(String.format(ACCOUNT_WAS_CREATED_MSG, scenarioContext.getAccount().getAccountName()));
     }
 
 
@@ -96,39 +90,38 @@ public class SaleforceSteps extends BaseSteps{
     }
 
     @When("^Click edit account button$")
-    public void clickEditAccountButton(){
+    public void clickEditAccountButton() {
         detailAccountPage.clickEditAccountButton();
     }
 
     @When("^Update account name$")
-    public void updateAccountName(){
+    public void updateAccountName() {
         scenarioContext.setAccount(AccountHelper.generateAccount());
         detailAccountPage.fillInAccountName(scenarioContext.getAccount().getAccountName());
     }
 
     @When("^Update account phone$")
-    public void updateAccountPhone(){
+    public void updateAccountPhone() {
         detailAccountPage.fillInAccountPhone(scenarioContext.getAccount().getPhone());
     }
 
     @When("^Click save button to save changes$")
-    public void clickSaveButtonToSaveChanges(){
+    public void clickSaveButtonToSaveChanges() {
         detailAccountPage.clickSaveButton();
         detailAccountPage.waitForAccoutNameToBeUpdated(scenarioContext.getAccount().getAccountName());
     }
 
     @Then("^Verify \"([^\"]*)\" account in list has updated name$")
-    public void verifyAccountInListHasUpdatedName(int number){
+    public void verifyAccountInListHasUpdatedName(int number) {
         String actualAccountName = accountTab.getNthAccountNameInList(number);
         scenarioContext.getSoftAssertions().assertThat(actualAccountName)
                 .isEqualTo(scenarioContext.getAccount().getAccountName());
     }
 
     @Then("^Verify \"([^\"]*)\" account in list has updated phone$")
-    public void verifyAccountInListHasUpdatedPhone(int number){
+    public void verifyAccountInListHasUpdatedPhone(int number) {
         String actualAccountPhone = accountTab.getNthAccountPhoneInList(number);
         scenarioContext.getSoftAssertions().assertThat(actualAccountPhone)
                 .isEqualTo(scenarioContext.getAccount().getPhone());
     }
-
 }

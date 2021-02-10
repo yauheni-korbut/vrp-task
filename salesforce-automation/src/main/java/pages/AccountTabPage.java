@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AccountTabPage extends BasePage{
+public class AccountTabPage extends BasePage {
 
     public static final String NOTIFICATION = "//div[contains(@class,'forceToastMessage')]";
     public static final String NTH_ACCOUNT_NAME = "//tbody//tr[%d]//th//a";
@@ -18,28 +18,24 @@ public class AccountTabPage extends BasePage{
     @FindBy(xpath = "//div[contains(@class,'active')]//slot[@name='secondaryFields']//lightning-formatted-phone")
     private WebElement phnoe;
 
-
-    public void clickNewButton(){
+    public void clickNewButton() {
         newButton.click();
     }
 
-    public String getNotificationText(){
+    public String getNotificationText() {
         waitForVisibilityOfElement(NOTIFICATION);
         return notification.getText();
     }
 
-    public void clicckNthAccountFromList(int number){
+    public void clicckNthAccountFromList(int number) {
         find(String.format(NTH_ACCOUNT_NAME, number)).click();
     }
 
-
-    public String getNthAccountNameInList(int number){
+    public String getNthAccountNameInList(int number) {
         return find(String.format(NTH_ACCOUNT_NAME, number)).getText();
     }
 
-
-    public String getNthAccountPhoneInList(int number){
+    public String getNthAccountPhoneInList(int number) {
         return find(String.format(NTH_ACCOUNT_PHONE, number)).getText();
     }
-
 }

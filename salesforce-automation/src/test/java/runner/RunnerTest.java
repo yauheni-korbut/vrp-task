@@ -11,5 +11,4 @@ import org.junit.runner.RunWith;
         plugin = { "pretty", "json:target/cucumber.json" },
         tags = { "~@ignore" })
 public class RunnerTest {
-
 }

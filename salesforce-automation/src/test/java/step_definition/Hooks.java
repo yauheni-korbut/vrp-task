@@ -8,26 +8,23 @@ import org.openqa.selenium.TakesScreenshot;
 import scenario_context.ScenarioContext;
 import webdriver.WebDriverManager;
 
-public class Hooks extends BaseSteps{
+public class Hooks extends BaseSteps {
 
-    public Hooks(ScenarioContext scenarioContext){
+    public Hooks(ScenarioContext scenarioContext) {
         this.scenarioContext = scenarioContext;
     }
 
     @Before
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.init();
     }
 
-
-
-    @After
-    public void tearDown(Scenario scenario){
+    @After(order = 1)
+    public void verifyScenario(Scenario scenario) {
         try {
             scenarioContext.getSoftAssertions().assertAll();
-        }
-        finally {
-            if(scenario.isFailed() || !scenarioContext.getSoftAssertions().wasSuccess()){
+        } finally {
+            if (scenario.isFailed() || !scenarioContext.getSoftAssertions().errorsCollected().isEmpty()) {
                 byte[] screenshotViewPort = ((TakesScreenshot) WebDriverManager.getWebDriver())
                         .getScreenshotAs(OutputType.BYTES);
                 scenario.embed(screenshotViewPort, "image/png");
@@ -35,8 +32,8 @@ public class Hooks extends BaseSteps{
         }
     }
 
-    @After
-    public void tearDown(){
+    @After(order = 0)
+    public void closeBrowser() {
         WebDriverManager.stopWebDriver();
     }
 
