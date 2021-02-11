@@ -4,17 +4,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.*;
-import scenario_context.ScenarioContext;
 import utils.AccountHelper;
+import utils.StringHelper;
 import webdriver.WebDriverManager;
 
 import static utils.ICommonConstants.*;
 
 public class SaleforceSteps extends BaseSteps {
-
-    public SaleforceSteps(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
-    }
 
     @Given("^Open saleforce trial org$")
     public void openSaleforceTrialOrg() {
@@ -75,7 +71,7 @@ public class SaleforceSteps extends BaseSteps {
     @Then("^Verify account phone is displayed$")
     public void verifyUserPhoneIsDisplayed() {
         scenarioContext.getSoftAssertions().assertThat(detailAccountPage.getPhone())
-                .isEqualTo(scenarioContext.getAccount().getPhone());
+                .isEqualTo(StringHelper.parsePhoneNumber(scenarioContext.getAccount().getPhone()));
     }
 
 
@@ -117,7 +113,7 @@ public class SaleforceSteps extends BaseSteps {
     @Then("^Verify \"([^\"]*)\" account in list has updated phone$")
     public void verifyAccountInListHasUpdatedPhone(int number) {
         String actualAccountPhone = accountTab.getNthAccountPhoneInList(number);
-        scenarioContext.getSoftAssertions().assertThat(actualAccountPhone)
-                .isEqualTo(scenarioContext.getAccount().getPhone());
+        String expectedAccountPhone = StringHelper.parsePhoneNumber(scenarioContext.getAccount().getPhone());
+        scenarioContext.getSoftAssertions().assertThat(actualAccountPhone).isEqualTo(expectedAccountPhone);
     }
 }

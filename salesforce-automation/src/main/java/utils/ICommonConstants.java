@@ -16,7 +16,7 @@ public interface ICommonConstants {
     String SALEFORCE_PASSWORD = "gfhjkm22";
 
     int ACCOUNT_NAME_LENGTH = 20;
-    int PHONE_LENGTH = 20;
+    int PHONE_LENGTH = 10;
 
     String ATTRIBUTE_CLASS = "class";
     String ATTRIBUTE_HIDE = "hide";

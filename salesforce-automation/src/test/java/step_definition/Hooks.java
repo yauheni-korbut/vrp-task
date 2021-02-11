@@ -5,14 +5,9 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import scenario_context.ScenarioContext;
 import webdriver.WebDriverManager;
 
 public class Hooks extends BaseSteps {
-
-    public Hooks(ScenarioContext scenarioContext) {
-        this.scenarioContext = scenarioContext;
-    }
 
     @Before
     public void setUp() {
