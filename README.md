@@ -12,6 +12,6 @@ or
 
 `mvn clean test -DbrowserName=firefox`
 
-The default browser is chrome. You can check the test execution results in folder 
+The default browser is chrome. You can check the test execution results in the folder:
 
 `/vrp-task/salesforce-automation/target/cucumber-reports/cucumber-html-reports/`
