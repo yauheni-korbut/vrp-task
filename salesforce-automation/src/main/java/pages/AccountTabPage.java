@@ -12,7 +12,7 @@ public class AccountTabPage extends BasePage {
     @FindBy(xpath = "//a[@title='New']")
     private WebElement newButton;
     @FindBy(xpath = "//div[contains(@class,'toastContent')]//span")
-    private WebElement notification;
+    private WebElement notificationText;
     @FindBy(xpath = "//div[contains(@class,'active')]//span[contains(@class,'custom-truncate')]")
     private WebElement accountName;
     @FindBy(xpath = "//div[contains(@class,'active')]//slot[@name='secondaryFields']//lightning-formatted-phone")
@@ -24,7 +24,7 @@ public class AccountTabPage extends BasePage {
 
     public String getNotificationText() {
         waitForVisibilityOfElement(NOTIFICATION);
-        return notification.getText();
+        return notificationText.getText();
     }
 
     public void clicckNthAccountFromList(int number) {

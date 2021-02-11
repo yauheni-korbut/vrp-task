@@ -37,13 +37,11 @@ public class SaleforceSteps extends BaseSteps {
         accountTab = new AccountTabPage();
     }
 
-
     @When("^Cick 'New' button$")
     public void cickNewButton() {
         accountTab.clickNewButton();
         createNewAccountPage = new CreateNewAccountPage();
     }
-
 
     @When("^Fill in account name$")
     public void fillInAccountName() {
@@ -62,13 +60,11 @@ public class SaleforceSteps extends BaseSteps {
         detailAccountPage = new DetailAccountPage();
     }
 
-
     @Then("^Verify notification that user was created is displayed$")
     public void verifyNotificationThatUserWasCreatedIsDisplayed() {
         scenarioContext.getSoftAssertions().assertThat(accountTab.getNotificationText())
                 .isEqualTo(String.format(ACCOUNT_WAS_CREATED_MSG, scenarioContext.getAccount().getAccountName()));
     }
-
 
     @Then("^Verify account name is displayed$")
     public void verifyUserNameIsDisplayed() {
